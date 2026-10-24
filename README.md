@@ -4,6 +4,9 @@ SmolVLA training, LoRA adaptation, and LIBERO evaluation experiments, organized 
 
 | Directory | VLA experiment |
 | --- | --- |
+| `v1/` | Initial environment stage; source snapshot not found (documented explicitly) |
+| `v2/` | Recovered early baseline, subset-training, and checkpoint-evaluation scripts |
+| `v3/` | Fixed/adaptive action-horizon controller, calibration, runner, and tests |
 | `v4/` | LoRA ablation on the Action Expert, projections, and selected VLM layers |
 | `v5/` | Single-task smolvla_base training and batch/worker variants |
 | `v6/` | Merge v5 adapters and continue Action Expert training |
@@ -41,3 +44,4 @@ python -m pytest recent_methods/test_recent_controller.py recent_methods/test_st
 ```
 
 The Git allowlist includes only the curated VLA source files and README documentation. Model weights, datasets, generated results, media, logs, caches, and local auxiliary programs remain outside the tracked tree.
+
