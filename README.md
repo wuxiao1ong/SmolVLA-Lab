@@ -1,19 +1,43 @@
 # SmolVLA-Lab
 
-Experiments on SmolVLA fine-tuning and inference strategies, evaluated on LIBERO.
+SmolVLA training, LoRA adaptation, and LIBERO evaluation experiments, organized by version.
 
-## Contents
+| Directory | VLA experiment |
+| --- | --- |
+| `v4/` | LoRA ablation on the Action Expert, projections, and selected VLM layers |
+| `v5/` | Single-task smolvla_base training and batch/worker variants |
+| `v6/` | Merge v5 adapters and continue Action Expert training |
+| `v7/` | Continue training with VLM layer 14 unfrozen |
+| `v8/` | Compare training VLM layer 14 versus layers 13/14 |
+| `v9/` | VLM-only LoRA on a frozen A-lite baseline |
+| `recovery/` | Recovery training and closed-loop evaluation |
+| `recent_methods/` | Adaptive action chunking, candidate reranking, evaluation runners, and controller tests |
 
-- `v4_*.py` through `v9_*.py`: preparation, training, validation, evaluation, auditing, and reporting scripts from successive experiment iterations.
-- `recovery_*.py`: recovery training, evaluation, and analysis utilities.
-- `diagnosis_eval.py`, `close_cd_diagnosis.py`, and `run_cd_diagnosis.sh`: diagnosis workflows.
-- `recent_methods/`: inference experiments, including adaptive action chunking, candidate reranking, and controller tests. See its README for the experimental protocol.
-- `v*_results/`: archived source copies associated with individual experiment versions.
+Each version directory contains one copy of its training, validation, and evaluation programs. Report generation, plotting, retrospective experiment analysis, status polling, artifact export, and duplicate source snapshots are excluded from the current source tree.
 
-## Environment and usage
+## Environment and execution
 
-These scripts were developed for a local Windows/WSL workflow using Python, PyTorch, LeRobot, SmolVLA, and LIBERO. They contain experiment-specific absolute paths, checkpoint references, and dataset locations. Review and adapt those values before running a script; this repository is a collection of experiment scripts rather than an installable package.
+The programs were developed with Python, PyTorch, LeRobot, PEFT, and LIBERO in a Windows/WSL environment with CUDA. They retain their original experiment settings, checkpoint identifiers, and external data/output paths. Review those paths before execution; this is an experiment source repository rather than an installable package.
 
-Refer to `recent_methods/README.md` for the environment versions and protocol used by that experiment. Other iterations may use different settings; inspect the relevant training and evaluation scripts.
+Run a version's script directly, for example:
 
-Only source code and README documentation are tracked. Model weights, datasets, generated results, logs, videos, images, and Python caches remain local.
+```bash
+python v9/v9_train.py C_A14 1
+python v9/v9_train.py C_A14 500
+python v9/v9_validate.py C_A14_500 /path/to/checkpoint
+python v9/v9_eval.py C_A14 /path/to/checkpoint
+```
+
+Versioned pipelines resolve their sibling scripts relative to their own files. Evaluations that use `state_audit.py` load it from this repository's `recent_methods/` directory.
+
+Dataset metadata, checkpoints, and earlier experiment outputs are required inputs. In particular, v4 training requires a generated `module_audit/target_summary.json`; v5 preparation uses the v4 split and module specification; later versions reuse earlier checkpoints and metadata. Some v7-v9 scripts still consume existing external `RUN_INDEX.json` files under the original `v*_results/` paths. These are local experiment inputs and are not bundled; update their locations or supply the original outputs before running. Removing report utilities does not remove these input requirements.
+
+The historical v4 manifest labels precision as `float32`; actual training uses native mixed BF16/FP32 with AMP disabled. Validation normalization statistics may overlap the validation split, and the reused development initial states do not constitute an independent holdout.
+
+See each directory's README and the argument handling in its scripts for version-specific details. Controller tests can be run in an environment with PyTorch and pytest:
+
+```bash
+python -m pytest recent_methods/test_recent_controller.py recent_methods/test_state_audit.py
+```
+
+The Git allowlist includes only the curated VLA source files and README documentation. Model weights, datasets, generated results, media, logs, caches, and local auxiliary programs remain outside the tracked tree.
