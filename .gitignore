@@ -61,12 +61,10 @@
 !/v9/v9_pipeline.py
 !/v9/v9_train.py
 !/v9/v9_validate.py
-!/v1/
 !/v2/
 !/v3/
 !/v3/scripts/
 !/v3/tests/
-!/v1/README.md
 !/v2/README.md
 !/v2/train_smoke_run3.sh
 !/v2/train_subset_500.sh

@@ -11,3 +11,5 @@ These original scripts were recovered from `~/vla_workspace/audit/`. The project
 The subset training scripts use episodes 0-7, which are mixed-task demonstrations and do not include LIBERO Object task 0. They preserve the historical preliminary experiment and must not be presented as the corrected task24 training setup. The handoff describes later task24 training, but standalone scripts for those corrected runs have not been found.
 
 Scripts retain the original absolute environment, cache, output, and checkpoint paths. Inspect those paths and output-existence checks before running. These recovered scripts were syntax-checked; training and simulation were not rerun. Duplicate failed setup attempts, audit/report generators, and installer scripts are excluded.
+
+[Repository overview](../README.md)

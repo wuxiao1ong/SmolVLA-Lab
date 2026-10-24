@@ -4,7 +4,6 @@ SmolVLA training, LoRA adaptation, and LIBERO evaluation experiments, organized 
 
 | Directory | VLA experiment |
 | --- | --- |
-| `v1/` | Initial environment stage; source snapshot not found (documented explicitly) |
 | `v2/` | Recovered early baseline, subset-training, and checkpoint-evaluation scripts |
 | `v3/` | Fixed/adaptive action-horizon controller, calibration, runner, and tests |
 | `v4/` | LoRA ablation on the Action Expert, projections, and selected VLM layers |

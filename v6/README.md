@@ -12,3 +12,5 @@ Merge the v5 C adapters and continue training the Action Expert and projections.
 - `v6_validate.py`
 
 These scripts preserve the original experiment settings and external data/checkpoint paths. See the root README for environment prerequisites. Training stages can depend on outputs from earlier versions.
+
+[Repository overview](../README.md)

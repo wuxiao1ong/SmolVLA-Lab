@@ -31,3 +31,5 @@ python -m pytest recent_methods/test_recent_controller.py recent_methods/test_st
 ```
 
 The tests cover controller behavior, primary RNG isolation, and propagation of actual initial-state indices. Retrospective analysis, plotting, report generation, and export scripts are excluded from this directory's tracked files.
+
+[Repository overview](../README.md)
