@@ -1,0 +1,30 @@
+# Track source code and project documentation only.
+*
+!*/
+!*.py
+!*.sh
+!*.ps1
+!*.bat
+!*.cmd
+!*.ipynb
+!*.js
+!*.ts
+!*.toml
+!*.yaml
+!*.yml
+!*.ini
+!*.cfg
+!requirements*.txt
+!README.md
+!.gitignore
+
+# Local caches, environments, credentials, and model artifacts.
+**/__pycache__/
+**/.pytest_cache/
+**/.venv/
+**/venv/
+**/node_modules/
+**/.env
+**/.env.*
+**/models/
+**/evidence/
